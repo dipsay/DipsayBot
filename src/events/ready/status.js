@@ -1,4 +1,4 @@
-module.exports = (client) => {
+module.exports = (argument, client, handler) => {
     client.user.setActivity({
         name: 'Future Client',
     });
