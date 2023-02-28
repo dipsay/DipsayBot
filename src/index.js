@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { Client, IntentsBitField } = require('discord.js');
-const { Routes } = require('discord-api-types/v9');
 const { CommandHandler } = require('djs-commander');
 const { Player } = require('discord-player');
 const mongoose = require('mongoose');
