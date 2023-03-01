@@ -24,11 +24,13 @@ client.distube = new DisTube(client, {
     searchSongs: 5,
     leaveOnFinish: true,
     emitNewSongOnly: true,
+    emitAddSongWhenCreatingQueue: false,
+    emitAddListWhenCreatingQueue: false,
     nsfw: true,
     plugins: [new YtDlpPlugin()]
 })
 
-const state = (queue) => `Volume: \`${queue.volume}%\` | Loop: \`${queue.repeatMode ? queue.repeatMode === 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\` | Filter: \`${queue.filters.join(", ") || "Off"}\``
+//const state = queue => `Volume: \`${queue.volume}%\` | Loop: \`${queue.repeatMode ? queue.repeatMode === 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\` | Filter: \`${queue.filters.join(", ") || "Off"}\``
 
 client.distube
     .on("playSong", (queue, song) => {
@@ -38,6 +40,13 @@ client.distube
             .setDescription(`[${song.name}](${song.url})`)
         queue.textChannel.send({ embeds: [embed] })
     })
+    .on("addSong", (queue, song) => {
+      const embed = new EmbedBuilder()
+          .setColor("#D9027D")
+          .setThumbnail(song.thumbnail)
+          .setDescription(`[${song.name}](${song.url})`)
+      queue.textChannel.send({ embeds: [embed] })
+  })
 
 new CommandHandler({
   client,
