@@ -27,6 +27,7 @@ client.distube = new DisTube(client, {
     emitAddSongWhenCreatingQueue: false,
     emitAddListWhenCreatingQueue: false,
     nsfw: true,
+    streamType: 0,
     plugins: [new YtDlpPlugin()]
 })
 
